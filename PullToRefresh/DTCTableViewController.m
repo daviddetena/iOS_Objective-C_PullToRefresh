@@ -7,12 +7,25 @@
 //
 
 #import "DTCTableViewController.h"
+#import "DTCCustomCell.h"
 
 @interface DTCTableViewController ()
-
+@property (nonatomic, strong) NSNumber *numberOfItems;
 @end
 
+
 @implementation DTCTableViewController
+
+#pragma mark - View lifecycle
+
+
+- (id) initWithStyle:(UITableViewStyle) style{
+    if(self = [super initWithStyle:style]){
+        // Custom number of items
+        _numberOfItems = @5;
+    }
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,75 +37,93 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void) viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    [self registerNib];
+    self.title = @"Pull To Refresh";
+    
+    // Add pull to refresh feature
+    [self addPullToRefresh];
+}
+
+
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
+
+// Register nib for the table w/ our custom cell
+-(void) registerNib{
+    // Register nib for custom cell
+    UINib *nib = [UINib nibWithNibName:@"DTCCustomCellViewCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:[DTCCustomCell cellId]];
+}
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-#warning Incomplete implementation, return the number of sections
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-#warning Incomplete implementation, return the number of rows
-    return 0;
+    return [self.numberOfItems integerValue];
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
     
-    // Configure the cell...
+    // Grab custom cell and configure UI
+    DTCCustomCell *cell = [tableView dequeueReusableCellWithIdentifier:[DTCCustomCell cellId]];
+    cell.titleLabel.text = @"Uncharted 4: A thief's end";
+    cell.descLabel.text = @"May 10th, 2016";
+    cell.photoView.image = [UIImage imageNamed:@"uncharted4.jpg"];
+    cell.iconView.image = [UIImage imageNamed:@"favorite.png"];
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return [DTCCustomCell cellHeight];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+
+#pragma mark - Utils
+
+// Implement pull to refresh feature
+-(void) addPullToRefresh{
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    self.refreshControl.backgroundColor = [UIColor colorWithWhite:0.8f alpha:1.0f];
+    self.refreshControl.tintColor = [UIColor whiteColor];
+    self.refreshControl.attributedTitle = [[NSAttributedString alloc]
+                                           initWithString:@"Downloading..."
+                                           attributes:@{NSFontAttributeName:[UIFont italicSystemFontOfSize:12]}];
+    
+    //add a target/action
+    [self.refreshControl addTarget:self
+                            action:@selector(refreshedByPullingTable:)
+                  forControlEvents:UIControlEventValueChanged];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
+// What to do when pulling table
+-(void) refreshedByPullingTable:(UITableView *)aTableView{
+    
+    // Start refreshing control
+    [self.refreshControl beginRefreshing];
+    
+    // Add 10 new items after refreshing
+    NSInteger items = [self.numberOfItems integerValue];
+    self.numberOfItems = @(items + 10);
+    
+    // Delay 3 seconds to simulate that new data is being downloaded and reload table data in main queue
+    double delayInSeconds = 3.0;
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW,(int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self.refreshControl endRefreshing];
+        [self.tableView reloadData];
+    });
 }
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
