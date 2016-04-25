@@ -11,6 +11,12 @@
 		59DCAE631CCE2EF700380A42 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DCAE621CCE2EF700380A42 /* AppDelegate.m */; };
 		59DCAE651CCE2EF700380A42 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59DCAE641CCE2EF700380A42 /* Assets.xcassets */; };
 		59DCAE681CCE2EF700380A42 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59DCAE661CCE2EF700380A42 /* LaunchScreen.storyboard */; };
+		59DCAE731CCE304A00380A42 /* UITableViewController+Navigation.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DCAE721CCE304A00380A42 /* UITableViewController+Navigation.m */; };
+		59DCAE761CCE305E00380A42 /* DTCTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DCAE751CCE305E00380A42 /* DTCTableViewController.m */; };
+		59DCAE7B1CCE337500380A42 /* DTCCustomCellViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59DCAE7A1CCE337500380A42 /* DTCCustomCellViewCell.xib */; };
+		59DCAE7E1CCE34A200380A42 /* DTCCustomCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 59DCAE7D1CCE34A200380A42 /* DTCCustomCell.m */; };
+		59DCAE821CCE3A4500380A42 /* favorite.png in Resources */ = {isa = PBXBuildFile; fileRef = 59DCAE801CCE3A4500380A42 /* favorite.png */; };
+		59DCAE831CCE3A4500380A42 /* uncharted4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 59DCAE811CCE3A4500380A42 /* uncharted4.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +27,15 @@
 		59DCAE641CCE2EF700380A42 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		59DCAE671CCE2EF700380A42 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59DCAE691CCE2EF700380A42 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59DCAE711CCE304A00380A42 /* UITableViewController+Navigation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableViewController+Navigation.h"; sourceTree = "<group>"; };
+		59DCAE721CCE304A00380A42 /* UITableViewController+Navigation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewController+Navigation.m"; sourceTree = "<group>"; };
+		59DCAE741CCE305E00380A42 /* DTCTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCTableViewController.h; sourceTree = "<group>"; };
+		59DCAE751CCE305E00380A42 /* DTCTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCTableViewController.m; sourceTree = "<group>"; };
+		59DCAE7A1CCE337500380A42 /* DTCCustomCellViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DTCCustomCellViewCell.xib; sourceTree = "<group>"; };
+		59DCAE7C1CCE34A200380A42 /* DTCCustomCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DTCCustomCell.h; sourceTree = "<group>"; };
+		59DCAE7D1CCE34A200380A42 /* DTCCustomCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DTCCustomCell.m; sourceTree = "<group>"; };
+		59DCAE801CCE3A4500380A42 /* favorite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favorite.png; sourceTree = "<group>"; };
+		59DCAE811CCE3A4500380A42 /* uncharted4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = uncharted4.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +68,10 @@
 		59DCAE5D1CCE2EF700380A42 /* PullToRefresh */ = {
 			isa = PBXGroup;
 			children = (
+				59DCAE7F1CCE3A3B00380A42 /* Resources */,
+				59DCAE771CCE333300380A42 /* Views */,
+				59DCAE701CCE302F00380A42 /* Controllers */,
+				59DCAE6F1CCE302700380A42 /* Categories */,
 				59DCAE611CCE2EF700380A42 /* AppDelegate.h */,
 				59DCAE621CCE2EF700380A42 /* AppDelegate.m */,
 				59DCAE641CCE2EF700380A42 /* Assets.xcassets */,
@@ -69,6 +88,43 @@
 				59DCAE5F1CCE2EF700380A42 /* main.m */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		59DCAE6F1CCE302700380A42 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				59DCAE711CCE304A00380A42 /* UITableViewController+Navigation.h */,
+				59DCAE721CCE304A00380A42 /* UITableViewController+Navigation.m */,
+			);
+			name = Categories;
+			sourceTree = "<group>";
+		};
+		59DCAE701CCE302F00380A42 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				59DCAE741CCE305E00380A42 /* DTCTableViewController.h */,
+				59DCAE751CCE305E00380A42 /* DTCTableViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		59DCAE771CCE333300380A42 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				59DCAE7A1CCE337500380A42 /* DTCCustomCellViewCell.xib */,
+				59DCAE7C1CCE34A200380A42 /* DTCCustomCell.h */,
+				59DCAE7D1CCE34A200380A42 /* DTCCustomCell.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		59DCAE7F1CCE3A3B00380A42 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				59DCAE801CCE3A4500380A42 /* favorite.png */,
+				59DCAE811CCE3A4500380A42 /* uncharted4.jpg */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,6 +186,9 @@
 			files = (
 				59DCAE651CCE2EF700380A42 /* Assets.xcassets in Resources */,
 				59DCAE681CCE2EF700380A42 /* LaunchScreen.storyboard in Resources */,
+				59DCAE7B1CCE337500380A42 /* DTCCustomCellViewCell.xib in Resources */,
+				59DCAE831CCE3A4500380A42 /* uncharted4.jpg in Resources */,
+				59DCAE821CCE3A4500380A42 /* favorite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,7 +200,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				59DCAE631CCE2EF700380A42 /* AppDelegate.m in Sources */,
+				59DCAE761CCE305E00380A42 /* DTCTableViewController.m in Sources */,
 				59DCAE601CCE2EF700380A42 /* main.m in Sources */,
+				59DCAE731CCE304A00380A42 /* UITableViewController+Navigation.m in Sources */,
+				59DCAE7E1CCE34A200380A42 /* DTCCustomCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
